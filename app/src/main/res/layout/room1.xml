@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:paddingTop="32dp"
+    android:paddingBottom="64dp">
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/innerframe"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></android.support.v4.view.ViewPager>
+
+
+    <android.support.constraint.Placeholder
+        android:id="@+id/animationHolder"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        tools:layout_editor_absoluteX="182dp"
+        tools:layout_editor_absoluteY="442dp"></android.support.constraint.Placeholder>
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/button_bed"
+        tools:layout_editor_absoluteX="166dp"
+        tools:layout_editor_absoluteY="410dp" />
+
+    <ImageView
+        android:id="@+id/bedroom1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="swapview"
+        app:srcCompat="@drawable/ic_bed_mini"
+        tools:layout_editor_absoluteX="97dp"
+        tools:layout_editor_absoluteY="458dp" />
+
+    <ImageView
+        android:id="@+id/bedroom2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="swapview"
+        app:srcCompat="@drawable/ic_bed_mini"
+        tools:layout_editor_absoluteX="290dp"
+        tools:layout_editor_absoluteY="458dp" />
+
+    <ImageView
+        android:id="@+id/bedroom3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="swapview"
+        app:srcCompat="@drawable/ic_bed_mini"
+        tools:layout_editor_absoluteX="351dp"
+        tools:layout_editor_absoluteY="458dp" />
+
+    <ImageView
+        android:id="@+id/imageView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="swapview"
+        app:srcCompat="@drawable/ic_sofa_mini"
+        tools:layout_editor_absoluteX="194dp"
+        tools:layout_editor_absoluteY="458dp" />
+
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="swapview"
+        app:srcCompat="@drawable/ic_spoon_and_fork_mini"
+        tools:layout_editor_absoluteX="49dp"
+        tools:layout_editor_absoluteY="643dp" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="418dp" />
+
+</android.support.constraint.ConstraintLayout>

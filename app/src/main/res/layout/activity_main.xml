@@ -1,56 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/parent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/parent"
     android:layout_alignParentTop="false"
     android:background="@color/white"
-    android:padding="@android:dimen/dialog_min_width_major"
-    tools:context=".MainActivity">
+    tools:context=".Setting">
 
     <ImageView
         android:id="@+id/ProfilePic2"
-        android:contentDescription="profile pic"
-        android:layout_width="130dp"
-        android:layout_height="127dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="140dp"
-        android:layout_marginBottom="8dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="74dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="74dp"
         android:background="@drawable/img"
-        app:layout_constraintBottom_toTopOf="@+id/OwnerName"
+        android:contentDescription="profile pic"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.992"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.296" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:contentDescription="person"
         android:id="@+id/imageView"
-        android:layout_width="40dp"
-        android:layout_height="34dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="14dp"
+        android:contentDescription="person"
         android:src="@drawable/ic_baseline_person_24px"
+        app:layout_constraintBottom_toTopOf="@+id/textView4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.414"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/OwnerName" />
 
     <ImageView
-        android:contentDescription="house image"
         android:id="@+id/imageView2"
-        android:layout_width="39dp"
-        android:layout_height="35dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="13dp"
+        android:contentDescription="house image"
         android:src="@drawable/ic_baseline_home_24px"
+        app:layout_constraintBottom_toTopOf="@+id/textView4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.719"
         app:layout_constraintStart_toStartOf="parent"
@@ -58,16 +56,16 @@
 
     <TextView
         android:id="@+id/OwnerName"
-        android:layout_width="178dp"
-        android:layout_height="29dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="108dp"
-        android:layout_marginBottom="532dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="58dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="58dp"
         android:text="Sharma's House"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.575"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ProfilePic2"
         tools:textSize="24sp" />
 
     <TextView
@@ -75,9 +73,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="16dp"
         android:text="4"
         android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/textView4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.305"
         app:layout_constraintStart_toStartOf="parent"
@@ -85,13 +85,15 @@
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="14dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="16dp"
         android:text="2"
         android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/textView4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.611"
         app:layout_constraintStart_toStartOf="parent"
@@ -100,162 +102,174 @@
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
-        android:layout_height="16dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="56dp"
-        android:layout_marginEnd="8dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="70dp"
         android:text="Your Subcription expires on 1st January 2023"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.592"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/OwnerName" />
 
+
     <android.support.constraint.ConstraintLayout
         android:id="@+id/container"
-        android:layout_width="321dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="78dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="349dp"
+        android:layout_height="364dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="45dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4">
 
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="114dp"
-            android:layout_height="22dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:text="Master Switch"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toTopOf="@+id/WelcomeHome"
-            app:layout_constraintEnd_toStartOf="@+id/MasterSwitch"
-            app:layout_constraintHorizontal_bias="0.038"
-            app:layout_constraintStart_toStartOf="@+id/guideline" />
-
-
-        <TextView
-            android:id="@+id/ManageUsage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <Button
+            android:id="@+id/MasterSwitch"
+            android:layout_width="300dp"
+            android:layout_height="30dp"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginBottom="10dp"
+
+
+            android:background="@drawable/rounded_switch"
+            android:elevation="10dp"
+            android:text="master switch"
+            app:layout_constraintBottom_toTopOf="@+id/WelcomeHome"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/WelcomeHome"
+            android:layout_width="300dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="56dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginBottom="15dp"
+
+
+            android:background="@drawable/rounded_switch"
+            android:elevation="10dp"
+            android:text="welcome me home"
+            app:layout_constraintBottom_toTopOf="@+id/ManageUser"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/ManageUser"
+            android:layout_width="141dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="15dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
-            android:text="Manage Usage"
+            android:text="Manage User"
             android:textColor="@color/black"
             android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@+id/ManageHome"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/guideline" />
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/WelcomeHome" />
 
 
         <TextView
             android:id="@+id/ManageDevices"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
+            android:layout_width="141dp"
+            android:layout_height="28dp"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="184dp"
             android:layout_marginBottom="8dp"
             android:text="Manage Device"
             android:textColor="@color/black"
             android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@+id/HomeScreen"
-            app:layout_constraintStart_toStartOf="@+id/guideline" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/ManageHome" />
 
 
         <TextView
             android:id="@+id/ManageHome"
-            android:layout_width="wrap_content"
-            android:layout_height="22dp"
+            android:layout_width="141dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             android:text="Manage Home"
             android:textColor="@color/black"
             android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@+id/ManageDevices"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.019"
-            app:layout_constraintStart_toStartOf="@+id/guideline" />
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/ManageUser" />
 
         <TextView
             android:id="@+id/HomeScreen"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="140dp"
+            android:layout_height="28dp"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="185dp"
             android:layout_marginBottom="8dp"
             android:text="Home Screen"
             android:textColor="@color/black"
             android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@+id/Help"
-            app:layout_constraintStart_toStartOf="@+id/guideline" />
-
-
-        <TextView
-            android:id="@+id/WelcomeHome"
-            android:layout_width="wrap_content"
-            android:layout_height="26dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:text="Welcome me home"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toTopOf="@+id/ManageUsage"
-            app:layout_constraintEnd_toStartOf="@+id/WelcomSwitch"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/guideline" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/ManageDevices" />
 
 
         <TextView
             android:id="@+id/Help"
-            android:layout_width="49dp"
-            android:layout_height="30dp"
+            android:layout_width="140dp"
+            android:layout_height="28dp"
             android:layout_marginStart="8dp"
-            android:layout_marginBottom="12dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="185dp"
+            android:layout_marginBottom="8dp"
             android:text="Help"
             android:textColor="@color/black"
             android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@+id/MyAccount"
-            app:layout_constraintStart_toStartOf="@+id/guideline" />
-
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/HomeScreen" />
 
         <TextView
             android:id="@+id/MyAccount"
-            android:layout_width="wrap_content"
-            android:layout_height="23dp"
+            android:layout_width="140dp"
+            android:layout_height="28dp"
             android:layout_marginStart="8dp"
-            android:layout_marginBottom="72dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="185dp"
+            android:layout_marginBottom="40dp"
             android:text="My Account"
             android:textColor="@color/black"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/guideline" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/Help" />
 
-        <Switch
-            android:id="@+id/MasterSwitch"
-            android:layout_width="51dp"
-            android:layout_height="24dp"
-            android:layout_marginBottom="5dp"
-            android:backgroundTint="@color/colorPrimary"
-            app:layout_constraintBottom_toTopOf="@+id/WelcomSwitch"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-        <Switch
-            android:id="@+id/WelcomSwitch"
-            android:layout_width="52dp"
-            android:layout_height="23dp"
-            android:layout_marginBottom="268dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
 
         <android.support.constraint.Guideline
             android:id="@+id/guideline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_begin="30dp" />
+            app:layout_constraintGuide_begin="16dp" />
 
     </android.support.constraint.ConstraintLayout>
 
