@@ -4,21 +4,29 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="@color/white"
-    android:paddingTop="32dp"
-    android:paddingLeft="32dp"
-    android:paddingRight="32dp">
+    android:layout_marginLeft="8dp"
+    android:layout_marginBottom="40dp"
+    android:layout_marginTop="4dp">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <ImageButton
+        android:id="@+id/imagetile"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
         android:layout_gravity="center"
-        android:src="@drawable/fan" />
+        android:scaleType="centerCrop"
+        android:background="@color/white"
+        android:src="@drawable/fan"
+        />
 
     <TextView
+        android:id="@+id/texttile"
         android:textColor="@color/grey2"
-        android:text="Fan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|center"/>
+        android:layout_gravity="bottom|center"
+        android:text="Fan"
+        android:textSize="8dp"
+        android:paddingBottom="16dp"
+        />
 
 </FrameLayout>

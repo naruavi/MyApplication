@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "135185926472",
+    "firebase_url": "https://mainclickofy.firebaseio.com",
+    "project_id": "mainclickofy",
+    "storage_bucket": "mainclickofy.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:135185926472:android:4a2aab5fea93a711",
+        "android_client_info": {
+          "package_name": "com0.example.android.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "135185926472-ab7blg4k1puhhrj8bkriqnqt77fcur6b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBirfNhMISz_qWs_fwxmYKmLCU6wHgBkrM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "135185926472-ab7blg4k1puhhrj8bkriqnqt77fcur6b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

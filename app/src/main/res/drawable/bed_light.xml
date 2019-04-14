@@ -2,11 +2,24 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:drawable="@drawable/bulb_on"
-        android:state_pressed="true">
-    </item>
-
+        android:state_enabled="false"
+        android:drawable="@drawable/bulb_off"
+        />
+    <!-- pressed state / clicked state -->
     <item
-        android:drawable="@drawable/bulb_off">
-    </item>
+        android:state_pressed="true"
+        android:state_enabled="true"
+        android:drawable="@drawable/bulb_on"
+        />
+    <!-- focused state -->
+    <item
+        android:state_focused="true"
+        android:state_enabled="true"
+        android:drawable="@drawable/bulb_on"
+        />
+    <!-- enabled state / default state-->
+    <item
+        android:state_enabled="true"
+        android:drawable="@drawable/bulb_off"
+        />
 </selector>
