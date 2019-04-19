@@ -1,5 +1,7 @@
 package com0.example.android.myapplication;
 
+import android.view.LayoutInflater;
+
 import java.util.HashMap;
 
 public class BedRoomPresenter {

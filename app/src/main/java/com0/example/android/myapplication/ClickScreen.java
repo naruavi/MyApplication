@@ -23,21 +23,24 @@ public class ClickScreen extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
+        int correctid = position + 1;
         if (position>=0 && position<livingtab){
             //Log.d("MainModel","value of position in click " + position);
-            return BedroomFragment.newInstance( "Living" + position,"LIVING");
+            return BedroomFragment.newInstance( "living","LIVING",position);
         }
         else if(position>=livingtab && position<livingtab+kitchentabs){
             //Log.d("MainModel","value of position in click " + position);
-            return BedroomFragment.newInstance( "Kitchen" + position,"KITCHEN");
+            return BedroomFragment.newInstance( "kitchen","KITCHEN",position);
         }
         else if(position>=livingtab+kitchentabs && position<livingtab+kitchentabs+bedtabs){
             //Log.d("MainModel","value of position in click " + position);
             //Log.d("MainModel","this if else works");
-            return BedroomFragment.newInstance("Bedroom" + position,"BEDROOM");
+            int c = position - (livingtab + kitchentabs) + 1;
+            Log.d("value of c", String.valueOf(c));
+            return BedroomFragment.newInstance("bedroom" + c,"BEDROOM",position);
         }
         else{
-            return BedroomFragment.newInstance("Living" + position,"LIVING");
+            return BedroomFragment.newInstance("living","LIVING",position);
         }
     }
 

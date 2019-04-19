@@ -1,6 +1,7 @@
 package com0.example.android.myapplication;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.Placeholder;
 import android.support.v4.app.Fragment;
@@ -18,10 +19,19 @@ import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
+    private HashMap<String,String> totaltabs;
     private ConstraintLayout screen;
     private ViewPager viewFrame;
     private MainPreseneter preseneter;
@@ -39,116 +49,155 @@ public class MainActivity extends AppCompatActivity {
     private ImageView kitche21;
     private ImageView animationPlace; //living room icon place or current page icon
     private ClickScreen clickScreen;
-    private HorizontalScrollView bottom_nav_bar;
+    //private HorizontalScrollView bottom_nav_bar;
     private ImageView settingIcon;
+    private FirebaseDatabase mFirebaseDatabase;
+    private DatabaseReference rootreference;
+    private TextView bedroommarker;
     //private LinearLayout bottomnavparent;  to be used for dynamic allocation of tabs
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.room2);
-        initialize();
+        initialize(); //not required now
 
-        viewFrame.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        preseneter = new MainPreseneter();
+        totaltabs = new HashMap<String, String>();
+        totaltabs.put("3bhk","113");
+        totaltabs.put("4bhk","114");
+        totaltabs.put("7bhk","117");
+        mFirebaseDatabase = FirebaseDatabase.getInstance();
+        rootreference = mFirebaseDatabase.getReference().child("user_details/house_id/house_type");
+        rootreference.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onPageScrolled(int i, float v, int i1) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Log.d("getting tabs",dataSnapshot.getValue().toString());
+                String tabs = totaltabs.get(dataSnapshot.getValue().toString());
+                Nolivingroom = Integer.parseInt(Character.toString(tabs.charAt(0)));
+                Nokitchen = Integer.parseInt(Character.toString(tabs.charAt(1)));
+                Nobedroom = Integer.parseInt(Character.toString(tabs.charAt(2)));
+                Log.d("getting tabs",Nobedroom+Nokitchen+Nolivingroom + "" );
+                screen = findViewById(R.id.screen); //Constraint Layout
+                viewFrame = findViewById(R.id.viewFrame); //view pager
+                bedroom21 = findViewById(R.id.bedroom21);
+                bedroom22 = findViewById(R.id.bedroom22);
+                bedroom23 = findViewById(R.id.bedroom23);
+                kitche21 = findViewById(R.id.kitchen21);
+                bedroommarker = findViewById(R.id.bedroommarker);
+                settingIcon = findViewById(R.id.setting_icon);
+                animationPlace = findViewById(R.id.animationPlace);
+                // bottom_nav_bar = findViewById(R.id.bottom_nav_bar);
+                clickScreen = new ClickScreen(getSupportFragmentManager(),
+                        Nolivingroom+Nokitchen+Nobedroom,Nolivingroom,Nobedroom,Nokitchen);
+                viewFrame.setAdapter(clickScreen);
 
+                //Setting Tag on Images to get their imageResource ID's
+                kitche21.setTag(R.drawable.ic_spoon_and_fork_mini);
+                bedroom21.setTag(R.drawable.ic_bed_mini);
+                bedroom22.setTag(R.drawable.ic_bed_mini);
+                bedroom23.setTag(R.drawable.ic_bed_mini);
+                animationPlace.setTag(R.drawable.ic_sofa_mini);
+                livingroom = new ArrayList<ImageView>();
+                bedroom = new ArrayList<ImageView>();
+                kitchen = new ArrayList<ImageView>();
+                /*try{
+                    Thread.sleep(200);
+                }catch (Exception e){
+
+                }*/
+                //bottomnavparent = findViewById(R.id.bottomnavparent);
+                //createBottomNavIcons();
+                //to switch views
+                viewFrame.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+                    @Override
+                    public void onPageScrolled(int i, float v, int i1) {
+
+                    }
+
+                    @Override
+                    public void onPageSelected(int i) {
+                        Log.d("position i", String.valueOf(i));
+                        Fragment fragment = clickScreen.getItem(i);
+                        String s = String.valueOf(fragment.getClass());
+                        Log.d("page Selected", "works " + s);
+                        String prefixid = BedroomFragment.PREFIXID;
+                        switch(prefixid){
+                            case "KITCHEN":
+                                Log.d("kFragment","fragment works");
+                                KitchenFragment kitchenFragment = new KitchenFragment();
+                                ImageView kim = screen.findViewWithTag(kitchenFragment.getIconImage());
+                                if(kim!=null){
+                                    kim.setImageResource((Integer) animationPlace.getTag());
+                                    kim.setTag((Integer) animationPlace.getTag());
+                                    kim.setContentDescription(animationPlace.getContentDescription());
+                                }
+                                else{
+                                    Log.d("imageView","it is null");
+                                }
+                                animationPlace.setImageResource(kitchenFragment.getIconImage());
+                                animationPlace.setTag(kitchenFragment.getIconImage());
+                                animationPlace.setContentDescription(String.valueOf(i));
+                                bedroommarker.setText("");
+                                break;
+                            case "LIVING":
+                                Log.d("lFragment","frgment works");
+                                LivingRoomFragment livingRoomFragment = new LivingRoomFragment();
+                                ImageView lim = screen.findViewWithTag(livingRoomFragment.getIconImage());
+                                if(lim!=null){
+                                    lim.setImageResource((Integer) animationPlace.getTag());
+                                    lim.setTag((Integer) animationPlace.getTag());
+                                    lim.setContentDescription(animationPlace.getContentDescription());
+                                }
+                                else{
+                                    Log.d("imageView","it is null");
+                                }
+                                animationPlace.setImageResource(livingRoomFragment.getIconImage());
+                                animationPlace.setTag(livingRoomFragment.getIconImage());
+                                animationPlace.setContentDescription(String.valueOf(i));
+                                bedroommarker.setText("");
+                                break;
+                            case "BEDROOM":
+                                Log.d("bFragment","frgment works");
+                                BedroomFragment bedroomFragment = new BedroomFragment();
+                                ImageView bim = screen.findViewWithTag(bedroomFragment.getIconImage());
+                                if(bim!=null){
+                                    bim.setImageResource((Integer) animationPlace.getTag());
+                                    bim.setTag((Integer) animationPlace.getTag());
+                                    bim.setContentDescription(animationPlace.getContentDescription());
+                                }
+                                else{
+                                    Log.d("imageView","it is null");
+                                }
+                                animationPlace.setImageResource(bedroomFragment.getIconImage());
+                                animationPlace.setTag(bedroomFragment.getIconImage());
+                                animationPlace.setContentDescription(String.valueOf(i));
+                                int mark = i+1 - Nolivingroom - Nokitchen;
+                                bedroommarker.setText("ROOM " + mark);
+                                bedroommarker.setTextColor(getResources().getColor(R.color.grey3));
+                                break;
+                            default: animationPlace.setImageResource(R.drawable.ic_sofa_1);
+                                break;
+                        }
+                    }
+                    @Override
+                    public void onPageScrollStateChanged(int i) {
+                    }
+                });
             }
 
             @Override
-            public void onPageSelected(int i) {
-                Log.d("position i", String.valueOf(i));
-/*                Fragment fragment = clickScreen.getItem(i);
-                String s = String.valueOf(fragment.getClass());
-                Log.d("page Selected", "works " + s);*/
-                String prefixid = BedroomFragment.PREFIXID;
-                switch(prefixid){
-                    case "KITCHEN":
-                        Log.d("kFragment","fragment works");
-                        KitchenFragment kitchenFragment = new KitchenFragment();
-                        ImageView kim = screen.findViewWithTag(kitchenFragment.getIconImage());
-                        if(kim!=null){
-                            kim.setImageResource((Integer) animationPlace.getTag());
-                            kim.setTag((Integer) animationPlace.getTag());
-                            kim.setContentDescription(animationPlace.getContentDescription());
-                        }
-                        else{
-                            Log.d("imageView","it is null");
-                        }
-                        animationPlace.setImageResource(kitchenFragment.getIconImage());
-                        animationPlace.setTag(kitchenFragment.getIconImage());
-                        animationPlace.setContentDescription(String.valueOf(i));
-                                            break;
-                    case "LIVING":
-                        Log.d("lFragment","frgment works");
-                        LivingRoomFragment livingRoomFragment = new LivingRoomFragment();
-                        ImageView lim = screen.findViewWithTag(livingRoomFragment.getIconImage());
-                        if(lim!=null){
-                            lim.setImageResource((Integer) animationPlace.getTag());
-                            lim.setTag((Integer) animationPlace.getTag());
-                            lim.setContentDescription(animationPlace.getContentDescription());
-                        }
-                        else{
-                            Log.d("imageView","it is null");
-                        }
-                        animationPlace.setImageResource(livingRoomFragment.getIconImage());
-                        animationPlace.setTag(livingRoomFragment.getIconImage());
-                        animationPlace.setContentDescription(String.valueOf(i));
-                                            break;
-                    case "BEDROOM":
-                        Log.d("bFragment","frgment works");
-                        BedroomFragment bedroomFragment = new BedroomFragment();
-                        ImageView bim = screen.findViewWithTag(bedroomFragment.getIconImage());
-                        if(bim!=null){
-                            bim.setImageResource((Integer) animationPlace.getTag());
-                            bim.setTag((Integer) animationPlace.getTag());
-                            bim.setContentDescription(animationPlace.getContentDescription());
-                        }
-                        else{
-                            Log.d("imageView","it is null");
-                        }
-                        animationPlace.setImageResource(bedroomFragment.getIconImage());
-                        animationPlace.setTag(bedroomFragment.getIconImage());
-                        animationPlace.setContentDescription(String.valueOf(i));
-                                            break;
-                    default: animationPlace.setImageResource(R.drawable.ic_sofa_1);
-                                            break;
-                }
-            }
-            @Override
-            public void onPageScrollStateChanged(int i) {
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
             }
         });
 
     }
 
     public void initialize(){
-        preseneter = new MainPreseneter();
-        this.Nolivingroom = preseneter.getLivingRoom();
-        this.Nobedroom = preseneter.getBedroom();
-        this.Nokitchen = preseneter.getKitchen();
-        screen = findViewById(R.id.screen); //Constraint Layout
-        viewFrame = findViewById(R.id.viewFrame); //view pager
-        bedroom21 = findViewById(R.id.bedroom21);
-        bedroom22 = findViewById(R.id.bedroom22);
-        bedroom23 = findViewById(R.id.bedroom23);
-        kitche21 = findViewById(R.id.kitchen21);
-        settingIcon = findViewById(R.id.setting_icon);
-        animationPlace = findViewById(R.id.animationPlace);
-        bottom_nav_bar = findViewById(R.id.bottom_nav_bar);
-        clickScreen = new ClickScreen(getSupportFragmentManager(), Nolivingroom+Nokitchen+Nobedroom,Nolivingroom,Nobedroom,Nokitchen);
-        viewFrame.setAdapter(clickScreen);
 
-        //Setting Tag on Images to get their imageResource ID's
-        kitche21.setTag(R.drawable.ic_spoon_and_fork_mini);
-        bedroom21.setTag(R.drawable.ic_bed_mini);
-        bedroom22.setTag(R.drawable.ic_bed_mini);
-        bedroom23.setTag(R.drawable.ic_bed_mini);
-        animationPlace.setTag(R.drawable.ic_sofa_mini);
-        livingroom = new ArrayList<ImageView>();
-        bedroom = new ArrayList<ImageView>();
-        kitchen = new ArrayList<ImageView>();
-        //bottomnavparent = findViewById(R.id.bottomnavparent);
-        createBottomNavIcons();
+/*        this.Nolivingroom = preseneter.getLivingRoom();
+        this.Nobedroom = preseneter.getBedroom();
+        this.Nokitchen = preseneter.getKitchen();*/
     }
 
     public void swapview(View v){
